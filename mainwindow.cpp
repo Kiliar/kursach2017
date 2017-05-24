@@ -30,11 +30,29 @@ void MainWindow::setupTask()
     ui->inputField->setPlainText(settings.tasks[settings.curTaskID].getStartingText());
 }
 
+void MainWindow::testFail()
+{
+    qDebug()<<"Nooooooooo";
+    Dialog *diag = new Dialog;
+    diag->setText("Noob lol!");
+    diag->show();
+}
+
 
 void MainWindow::on_checkButton_clicked()
 {
     QString text = ui->inputField->toPlainText();
     settings.setEnteredText(text);
+    if(settings.checkInput()){
+       testSuccess();
+    } else testFail();
     settings.checkInput();
-    qDebug() << text;
+}
+
+void MainWindow::testSuccess()
+{
+    qDebug()<<"Heeeeeey!";
+    Dialog *diag = new Dialog;
+    diag->setText("hello world");
+    diag->show();
 }

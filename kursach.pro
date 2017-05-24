@@ -14,13 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    settings.cpp \
     task.cpp \
-    iygfkcjy.cpp
+    settings.cpp \
+    dialog.cpp
 
 HEADERS  += mainwindow.h \
-    settings.h \
     task.h \
-    iygfkcjy.h
+    settings.h \
+    dialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialog.ui

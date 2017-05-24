@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QDebug>
 #include "settings.h"
-#include "iygfkcjy.h"
+#include "dialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,17 +20,16 @@ public:
     void setDescription(QString);
     void setText(QString);
     void setupTask();
+    void testFail();
+    void testSuccess();
 
 
-
-private slots:
+public slots:
     void on_checkButton_clicked();
-
 
 private:
     Ui::MainWindow *ui;
     Settings settings;
-    iygfkcjy sdgfsfg;
 };
 
 #endif // MAINWINDOW_H

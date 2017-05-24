@@ -1,32 +1,36 @@
 #include "settings.h"
+#include "QDebug"
 
-Settings::Settings(QObject *parent) : QObject(parent)
-{
+Settings::Settings(){
     for (int i; i<10;i++){
-            Task tmp;
-            QString desc = "Test 1236", text = "#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ";
-            QString words = "#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ";
-            tmp.fillTask(desc,text,words);
-            tasks.append(tmp);
-        }
-        tasks[5].fillTask("ХУЙ","#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ","#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ");
-        curTaskID = 0;
+        Task tmp;
+        QString desc = "Test 1236", text = "#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ";
+        QString words = "#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ";
+        tmp.fillTask(desc,text,words);
+        tasks.append(tmp);
+    }
+    tasks[5].fillTask("ХУЙ","#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ","#include <iosream>\n\nint a, b, c;\n\nint main {\ncin >> a >> b;\nc = a+b;\ncout << c;\nreturn 0;\n} ");
+    curTaskID = 0;
 }
+
 void Settings::setEnteredText(QString text)
 {
     enteredText = text;
 }
 
-bool Settings::checkInput()
+void Settings::checkInput()
 {
       QVector<QString> checkWords = decompose(tasks[curTaskID].getCheckWords()),
                        text = decompose(enteredText);
       for (int i = 0; i < text.length(); i++) {
-          if(i >= checkWords.length() || text[i] != checkWords[i]) {
-                  return false;
+          if(i < checkWords.length()) {
+              if(text[i] != checkWords[i]) {
+                  qDebug() << "Looser! Ha-Ha!";
+                  return;
+              }
           }
       }
-     return true;
+      qDebug() << "Krasava!";
 }
 
 QVector<QString> Settings::decompose(QString t)
